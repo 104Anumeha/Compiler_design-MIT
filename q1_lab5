@@ -1,0 +1,33 @@
+%{
+
+#include <stdio.h>
+int vowels = 0;
+int consonants = 0;
+%}
+
+
+
+
+
+
+%%
+
+[aeiouAEIOU]       { vowels++; }
+[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ] { consonants++; }
+.  { } /*Ignore other characters */
+
+%%
+
+
+int yywrap(){return 1;}
+
+/*code section*/
+int main(int argc, char **argv)
+{
+    printf("Enter a string: ");
+    yylex();
+    printf("Number of vowels: %d\n", vowels);
+    printf("Number of consonants: %d\n", consonants);
+    printf("\n");
+    return 0;
+}
